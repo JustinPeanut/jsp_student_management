@@ -12,10 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyTest {
+
     @Test
-    public void testProperties() throws Exception {
+    public void testConnection() throws Exception {
+        Connection connection = MyConnection.getConnection();
+        System.out.println(connection);
+    }
+
+    @Test
+    public void testSelect() throws Exception {
         MyConnection myConnection = new MyConnection();
-        Connection connection = myConnection.getConnection();
+        Connection connection = MyConnection.getConnection();
         List<Student> list = new ArrayList<>();
         // 预编译sql语句
         PreparedStatement preparedStatement = connection.prepareStatement("select * from student");
@@ -24,25 +31,26 @@ public class MyTest {
         // 获取元数据
         ResultSetMetaData metaData = resultSet.getMetaData();
         // 有多少列
-        Student student = new Student();
+
         int columnCount = metaData.getColumnCount();
         while(resultSet.next()){
+            Student student = new Student();
             for(int i = 0 ; i < columnCount ; i++){
                 // 将结果映射到类上面
                 String columnLabel = metaData.getColumnLabel(i+1);
                 Field field = Student.class.getDeclaredField(columnLabel);
                 field.setAccessible(true);
                 field.set(student,resultSet.getObject(i + 1));
-                list.add(student);
+
             }
+            list.add(student);
         }
         System.out.println(list);
     }
 
     @Test
     public void testClass() throws Exception {
-        MyConnection myConnection = new MyConnection();
-        Connection connection = myConnection.getConnection();
+        Connection connection = MyConnection.getConnection();
         StudentDaoImpl impl = new StudentDaoImpl();
         impl.insert(connection,"zz","男","21","1","郑州");
     }

@@ -6,29 +6,7 @@
 <head>
     <base href="http://localhost:8080/JSP_Student_manage_war_exploded/">
     <link href="bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet"/>
-    <style type="text/css">
-        .login{
-            position: relative;
-            margin: 100px auto;
-            width: 400px;
-            text-align: center;
-        }
-        .login input,button{
-            border-radius: 8%;
-            margin: 5px;
-        }
-        .title{
-            margin: 50px auto;
-            text-align: center;
-            color: #2aabd2;
-            font-weight: bold;
-            font-size: 20px;
-        }
-        .red-exception{
-            color: red;
-            text-align: center;
-        }
-    </style>
+    <link href="css/login.css" type="text/css" rel="stylesheet"/>
 </head>
 
 <body style="background-image: url('img/bg.jpg');background-repeat: no-repeat;">

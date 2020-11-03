@@ -1,0 +1,21 @@
+.login{
+    position: relative;
+    margin: 100px auto;
+    width: 400px;
+    text-align: center;
+}
+.login input,button{
+    border-radius: 8%;
+    margin: 5px;
+}
+.title{
+    margin: 50px auto;
+    text-align: center;
+    color: #2aabd2;
+    font-weight: bold;
+    font-size: 20px;
+}
+.red-exception{
+    color: red;
+    text-align: center;
+}
