@@ -13,7 +13,7 @@ public interface StudentDao<T> {
 
     void updateBySno(Connection connection,String... args);
 
-    T selectByUsername(Connection connection,String... args);
+    T selectByUsername(Connection connection,String... args) throws Exception;
 
 
 }

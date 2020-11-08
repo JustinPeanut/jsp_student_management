@@ -79,10 +79,11 @@ public abstract class BaseDao<T> {
     }
 
     // 查询单个通用的方法
-    public T select(String sql ,Connection connection,String... args){
+    public List<T> select(String sql ,Connection connection,String... args){
         PreparedStatement ps = null;
         ResultSet rs = null;
         ResultSetMetaData rsm = null;
+        List<T> list = new ArrayList<>();
         try{
             ps = connection.prepareStatement(sql);
             for(int i = 0 ; i < args.length ; i++){
@@ -92,8 +93,8 @@ public abstract class BaseDao<T> {
             rsm = rs.getMetaData();
             // 获取字段的个数
             int columnCount = rsm.getColumnCount();
-            T instance = (T)clazz.getDeclaredConstructor().newInstance();
             while(rs.next()){
+                T instance = (T)clazz.getDeclaredConstructor().newInstance();
                 for(int i = 0 ; i < columnCount ; i++){
                     String columnLabel = rsm.getColumnLabel(i + 1);
                     Object object = rs.getObject(i + 1);
@@ -101,8 +102,9 @@ public abstract class BaseDao<T> {
                     filed.setAccessible(true);
                     filed.set(instance,object);
                 }
-                return instance;
+                list.add(instance);
             }
+            return list;
         }catch (Exception e){
             e.printStackTrace();
         }finally {

@@ -1,6 +1,9 @@
 package com.peanut.test;
 
+import com.peanut.bean.Course;
 import com.peanut.bean.Student;
+import com.peanut.dao.CourseDao;
+import com.peanut.dao.CourseDaoImpl;
 import com.peanut.dao.StudentDaoImpl;
 import com.peanut.utils.connection.MyConnection;
 import org.junit.Test;
@@ -58,11 +61,28 @@ public class MyTest {
     @Test
     public void testSelectAll() throws Exception{
         MyConnection myConnection = new MyConnection();
-        Connection connection = myConnection.getConnection();
+        Connection connection = MyConnection.getConnection();
         StudentDaoImpl impl = new StudentDaoImpl();
         List<Student> list = impl.selectAll(connection);
         System.out.println(list);
 
     }
+
+    @Test
+    public void testSelectCourse() throws Exception {
+        Connection connection = MyConnection.getConnection();
+        CourseDaoImpl courseDao = new CourseDaoImpl();
+        List<Course> courses = courseDao.selectAll(connection);
+        System.out.println(courses);
+    }
+
+    @Test
+    public void testSelectCourseStudent() throws Exception {
+        Connection connection = MyConnection.getConnection();
+        CourseDaoImpl courseDao = new CourseDaoImpl();
+        List<Course> courses = courseDao.selectStudentSelect(connection,"1");
+        System.out.println(courses);
+    }
+
 }
 

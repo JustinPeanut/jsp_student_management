@@ -1,6 +1,7 @@
 package com.peanut.dao;
 
 import com.peanut.bean.Student;
+import com.peanut.utils.exception.NoSuchStudent;
 
 import java.sql.Connection;
 import java.util.List;
@@ -32,8 +33,17 @@ public class StudentDaoImpl extends BaseDao<Student> implements StudentDao<Stude
 
     @Override
     public Student selectByUsername(Connection connection, String... args) {
-        String sql = "select * from student where Sname = ?";
-        Student student = select(sql, connection, args);
+        Student student = null;
+        try{
+            String sql = "select * from student where Sname = ?";
+            List<Student> students = select(sql, connection, args);
+            if(students == null || students.size() == 0){
+                throw new NoSuchStudent("学生不存在");
+            }
+            student  = students.get(0);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return student;
     }
 }

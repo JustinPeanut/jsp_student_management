@@ -1,6 +1,8 @@
 package com.peanut.service;
 
+import com.peanut.bean.Course;
 import com.peanut.bean.Student;
+import com.peanut.dao.CourseDaoImpl;
 import com.peanut.dao.StudentDaoImpl;
 import com.peanut.utils.connection.MyConnection;
 import com.peanut.utils.constant.Constant;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.List;
 
 
 public class LoginController extends HttpServlet {
@@ -31,13 +34,23 @@ public class LoginController extends HttpServlet {
 
             StudentDaoImpl studentDao = new StudentDaoImpl();
 
+            // 查询学生验证登录
             Student student = studentDao.selectByUsername(connection,username);
+
 
             session = req.getSession();
 
             if(student != null && password.equals(student.getSpassword())){
                 // 如果密码正确，就返回页面
                 session.setAttribute(Constant.ATTR_STUDENT,student);
+
+                //并且查询出学生的选课信息
+                CourseDaoImpl courseDao = new CourseDaoImpl();
+
+                List<Course> courses = courseDao.selectStudentSelect(connection, student.getSno().toString());
+
+                // 设置回session
+                session.setAttribute(Constant.ATTR_STUDENT_COURSES,courses);
 
                 req.getRequestDispatcher("WEB-INF/student/home.jsp").forward(req,resp);
 
