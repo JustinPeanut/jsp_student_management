@@ -1,5 +1,7 @@
 <%@ page import="com.peanut.utils.constant.Constant" %>
 <%@ page import="com.peanut.bean.Student" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.peanut.bean.Course" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -62,6 +64,7 @@
         position: relative;
         float: left;
         margin-left: 25px;
+        margin-right: 10px;
     }
 
     .student-course {
@@ -74,9 +77,9 @@
         width: 420px;
         height: 396px;
         position: relative;
-        float: right;
         margin-right: 30px;
         margin-top: 10px;
+        align-items: center;
     }
 
     .borderc {
@@ -98,6 +101,13 @@
     .right-info a{
         text-decoration: none;
         font-size: 10px;
+    }
+    .Mycontent{
+        display: flex;
+    }
+
+    .course{
+        flex: 1;
     }
 
 
@@ -130,108 +140,127 @@
     </div>
 </div>
 
-<div class="left-info">
-    <div class="row">
+<div class="Mycontent">
+    <div class="left-info content">
+        <div class="row">
 
-        <div class="thumbnail">
-            <img src="img/xs_bg.jpg" alt="...">
-            <div class="caption">
-                <h3>学生信息:</h3>
-                <p>姓名：<%=student.getSname()%>
-                </p>
-                <p>年龄：<%=student.getSage()%>
-                </p>
-                <p>性别：<%=student.getSsex()%>
-                </p>
-                <p>城市：<%=student.getCity()%>
-                </p>
-                <a href="javascript:;" class="btn btn-primary" role="button">修改</a>
+            <div class="thumbnail">
+                <img src="img/xs_bg.jpg" alt="...">
+                <div class="caption">
+                    <h3>学生信息:</h3>
+                    <p>姓名：<%=student.getSname()%>
+                    </p>
+                    <p>年龄：<%=student.getSage()%>
+                    </p>
+                    <p>性别：<%=student.getSsex()%>
+                    </p>
+                    <p>城市：<%=student.getCity()%>
+                    </p>
+                    <a href="javascript:;" class="btn btn-primary" role="button">修改</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="course row borderc">
-    <div class="student-course">
-        <table class="table table-hover">
-            <tr>
-                <td>#</td>
-                <td>我的选课</td>
-                <td>教室名称</td>
-                <td>上课时间</td>
-                <td>操作</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>数据结构</td>
-                <td>xxx</td>
-                <td>xxx</td>
-                <td>
-                    <button type="button" class="btn-xs btn-danger">删除</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>计算机网络</td>
-                <td>xxx</td>
-                <td>xxx</td>
-                <td>
-                    <button type="button" class="btn-xs btn-danger">删除</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>JSP程序设计</td>
-                <td>xxx</td>
-                <td>xxx</td>
-                <td>
-                    <button type="button" class="btn-xs btn-danger">删除</button>
-                </td>
-            </tr>
-        </table>
+    <div class="course row borderc content">
+        <div class="student-course">
+            <table class="table table-hover">
+                <tr>
+                    <td>#</td>
+                    <td>我的选课</td>
+                    <td>教室名称</td>
+                    <td>上课时间</td>
+                    <td>操作</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>数据结构</td>
+                    <td>xxx</td>
+                    <td>xxx</td>
+                    <td>
+                        <button type="button" class="btn-xs btn-danger">删除</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>计算机网络</td>
+                    <td>xxx</td>
+                    <td>xxx</td>
+                    <td>
+                        <button type="button" class="btn-xs btn-danger">删除</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>JSP程序设计</td>
+                    <td>xxx</td>
+                    <td>xxx</td>
+                    <td>
+                        <button type="button" class="btn-xs btn-danger">删除</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="right-info borderc content">
+        <ul>
+            <li>
+                <a href="javascript:;">
+                    <div>
+                        <img src="img/tb9.png"/>
+                    </div>
+                    <span>学生选课中心</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <div>
+                        <img src="img/tb11.png"/>
+                    </div>
+
+                    <span>课程成绩查询</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <div>
+                        <img src="img/tb12.png"/>
+                    </div>
+                    <span>培养方法明细</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <div>
+                        <img src="img/tb14.png"/>
+                    </div>
+                    <span>考试安排查询</span>
+                </a>
+            </li>
+        </ul>
+
     </div>
 </div>
 
-<div class="right-info borderc">
-    <ul>
-        <li>
-            <a href="javascript:;">
-                <div>
-                    <img src="img/tb9.png"/>
-                </div>
-                <span>学生选课中心</span>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                <div>
-                    <img src="img/tb11.png"/>
-                </div>
+<div>
+    <%
+        String list = (String) session.getAttribute(Constant.ATTR_STUDENT_COURSES);
+        if(list == null){
 
-                <span>课程成绩查询</span>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                <div>
-                    <img src="img/tb12.png"/>
-                </div>
-                <span>培养方法明细</span>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                <div>
-                    <img src="img/tb14.png"/>
-                </div>
-                <span>考试安排查询</span>
-            </a>
-        </li>
-    </ul>
+    %>
+    <%
+        }
 
+    %>
 </div>
 
 <script type="text/javascript">
+    // 获取已经选的课
+    let list = <%=session.getAttribute(Constant.ATTR_STUDENT_COURSES)%>;
+
+    console.log(list)
+
     let elementById = document.getElementById("quit");
 
     elementById.onclick = function () {

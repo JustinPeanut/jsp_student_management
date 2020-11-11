@@ -6,6 +6,7 @@ import com.peanut.dao.CourseDaoImpl;
 import com.peanut.dao.StudentDaoImpl;
 import com.peanut.utils.connection.MyConnection;
 import com.peanut.utils.constant.Constant;
+import net.sf.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,10 +48,16 @@ public class LoginController extends HttpServlet {
                 //并且查询出学生的选课信息
                 CourseDaoImpl courseDao = new CourseDaoImpl();
 
-                List<Course> courses = courseDao.selectStudentSelect(connection, student.getSno().toString());
+                Connection connection1 = MyConnection.getConnection();
+
+                List<Course> courses = courseDao.selectStudentSelect(connection1, student.getSno()+"");
 
                 // 设置回session
-                session.setAttribute(Constant.ATTR_STUDENT_COURSES,courses);
+                JSONArray jsonArray = JSONArray.fromCollection(courses);
+
+                String courseJson = jsonArray.toString();
+
+                session.setAttribute(Constant.ATTR_STUDENT_COURSES,courseJson);
 
                 req.getRequestDispatcher("WEB-INF/student/home.jsp").forward(req,resp);
 
