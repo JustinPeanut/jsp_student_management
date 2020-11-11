@@ -44,7 +44,7 @@
         flex: 1;
     }
 
-    .caption h3, p, a {
+    .caption h3, p {
         font-size: 15px;
         margin-left: 30px;
     }
@@ -98,9 +98,17 @@
     .right-info ul li {
         flex: 1;
     }
-    .right-info a{
+    a{
+        color: #0f0f0f;
         text-decoration: none;
         font-size: 10px;
+    }
+    a:hover{
+        color: red;
+        text-decoration: none;
+    }
+    a:active{
+        text-decoration: none;
     }
     .Mycontent{
         display: flex;
@@ -165,43 +173,21 @@
     <div class="course row borderc content">
         <div class="student-course">
             <table class="table table-hover">
-                <tr>
+                <thead>
                     <td>#</td>
                     <td>我的选课</td>
                     <td>教室名称</td>
                     <td>上课时间</td>
                     <td>操作</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>数据结构</td>
-                    <td>xxx</td>
-                    <td>xxx</td>
-                    <td>
-                        <button type="button" class="btn-xs btn-danger">删除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>计算机网络</td>
-                    <td>xxx</td>
-                    <td>xxx</td>
-                    <td>
-                        <button type="button" class="btn-xs btn-danger">删除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>JSP程序设计</td>
-                    <td>xxx</td>
-                    <td>xxx</td>
-                    <td>
-                        <button type="button" class="btn-xs btn-danger">删除</button>
-                    </td>
-                </tr>
+                </thead>
             </table>
         </div>
     </div>
+
+<%--  删除课程所需要的表单  --%>
+    <form class="removeForm" action="removeCourse" type="post">
+        <input id="courseId" type="hidden"/>
+    </form>
 
     <div class="right-info borderc content">
         <ul>
@@ -255,19 +241,48 @@
     %>
 </div>
 
+<script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
-    // 获取已经选的课
-    let list = <%=session.getAttribute(Constant.ATTR_STUDENT_COURSES)%>;
+    let table = $(".table");
 
-    console.log(list)
+    function generate(){
+        // 获取已经选的课
+        let list = <%=session.getAttribute(Constant.ATTR_STUDENT_COURSES)%>;
+
+        // 展示内容
+
+        $("tbody").empty();
+
+        for(let i = 0 ; i < list.length ; i++){
+            let str = "<tr>\n" +
+                "    <td>"+ (i+1) +"</td>\n" +
+                "    <td>"+ list[i].courseName +"</td>\n" +
+                "    <td> "+ list[i].classRoom +"</td>\n" +
+                "    <td>"+ list[i].classTime +"</td>\n" +
+                "    <td>\n" +
+                "        <button type=\"button\" class=\"delete btn-xs btn-danger\"><a href='removeCourse?courseId="+ list[i].courseId +"'>删除<a></button>\n" +
+                "    </td>\n" +
+                "</tr>"
+            $(table).append(str);
+        }
+    }
+
+
+    // 展示所选课程
+    generate();
 
     let elementById = document.getElementById("quit");
 
+    // 退出
     elementById.onclick = function () {
 
         window.location.href = "http://localhost:8080/JSP_Student_manage_war_exploded/login";
 
     }
+
+
+
+
 </script>
 </body>
 </html>
