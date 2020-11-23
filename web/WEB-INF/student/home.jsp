@@ -8,118 +8,7 @@
 <base href="http://localhost:8080/JSP_Student_manage_war_exploded/">
 <link href="css/base.css" rel="stylesheet"/>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
-<style type="text/css">
-    .title-bar {
-        display: flex;
-        height: 70px;
-        width: 100%;
-        background-color: #2aabd2;
-        line-height: 70px;
-        color: #fff;
-        font-family: 幼圆;
-
-    }
-
-    #right li:hover {
-        background-color: #1b6d85;
-    }
-
-    #imgTitle {
-        width: 600px;
-        display: flex;
-    }
-
-    .title-bar li {
-        flex: 1;
-        list-style: none;
-        text-align: center;
-    }
-
-    #right {
-        width: 150px;
-        display: flex;
-    }
-
-    #middleText {
-        flex: 1;
-    }
-
-    .caption h3, p {
-        font-size: 15px;
-        margin-left: 30px;
-    }
-
-    .left-info {
-        margin-top: 10px;
-        margin-left: 25px;
-        position: relative;
-        float: left;
-        width: 370px;
-    }
-
-    .course {
-        width: 500px;
-        height: 395px;
-        margin-top: 10px;
-        position: relative;
-        float: left;
-        margin-left: 25px;
-        margin-right: 10px;
-    }
-
-    .student-course {
-        padding: 20px;
-        text-align: center;
-        line-height: 100%;
-    }
-
-    .right-info {
-        width: 420px;
-        height: 396px;
-        position: relative;
-        margin-right: 30px;
-        margin-top: 10px;
-        align-items: center;
-    }
-
-    .borderc {
-        border-radius: 25px;
-        border: 1px solid #9d9d9d;
-    }
-
-    .right-info ul {
-        display: flex;
-        padding: 10px;
-        list-style: none;
-        text-align: center;
-
-    }
-
-    .right-info ul li {
-        flex: 1;
-    }
-    a{
-        color: #0f0f0f;
-        text-decoration: none;
-        font-size: 10px;
-    }
-    a:hover{
-        color: red;
-        text-decoration: none;
-    }
-    a:active{
-        text-decoration: none;
-    }
-    .Mycontent{
-        display: flex;
-    }
-
-    .course{
-        flex: 1;
-    }
-
-
-</style>
+<link href="css/home.css" rel="stylesheet"/>
 
 <body>
 <div class="title-bar">
@@ -192,7 +81,7 @@
     <div class="right-info borderc content">
         <ul>
             <li>
-                <a href="javascript:;">
+                <a href="to/course/center?flag=CourseCenter.jsp">
                     <div>
                         <img src="img/tb9.png"/>
                     </div>
@@ -242,6 +131,7 @@
 </div>
 
 <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/quit.js"></script>
 <script type="text/javascript">
     let table = $(".table");
 
@@ -271,14 +161,7 @@
     // 展示所选课程
     generate();
 
-    let elementById = document.getElementById("quit");
 
-    // 退出
-    elementById.onclick = function () {
-
-        window.location.href = "http://localhost:8080/JSP_Student_manage_war_exploded/login";
-
-    }
 
 
 
