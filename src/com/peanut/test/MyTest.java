@@ -6,6 +6,8 @@ import com.peanut.dao.CourseDao;
 import com.peanut.dao.CourseDaoImpl;
 import com.peanut.dao.StudentDaoImpl;
 import com.peanut.utils.connection.MyConnection;
+import com.peanut.utils.util.ObjectToJson;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,6 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyTest {
+    private Connection  connection = null;
+
+    @Before
+    public void init() throws Exception {
+        connection = MyConnection.getConnection();
+    }
 
     @Test
     public void testConnection() throws Exception {
@@ -82,6 +90,14 @@ public class MyTest {
         CourseDaoImpl courseDao = new CourseDaoImpl();
         List<Course> courses = courseDao.selectStudentSelect(connection,"1");
         System.out.println(courses);
+    }
+
+    @Test
+    public void testJson() throws Exception {
+        CourseDaoImpl courseDao = new CourseDaoImpl();
+        List<Course> list = courseDao.selectAll(connection);
+        String s = ObjectToJson.toJson(list);
+        System.out.println(s);
     }
 
 }

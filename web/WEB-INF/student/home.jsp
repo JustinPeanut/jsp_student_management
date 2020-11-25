@@ -132,40 +132,12 @@
 
 <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/quit.js"></script>
+<script type="text/javascript" src="js/courseGenerate.js"></script>
 <script type="text/javascript">
     let table = $(".table");
-
-    function generate(){
-        // 获取已经选的课
-        let list = <%=session.getAttribute(Constant.ATTR_STUDENT_COURSES)%>;
-
-        // 展示内容
-
-        $("tbody").empty();
-
-        for(let i = 0 ; i < list.length ; i++){
-            let str = "<tr>\n" +
-                "    <td>"+ (i+1) +"</td>\n" +
-                "    <td>"+ list[i].courseName +"</td>\n" +
-                "    <td> "+ list[i].classRoom +"</td>\n" +
-                "    <td>"+ list[i].classTime +"</td>\n" +
-                "    <td>\n" +
-                "        <button type=\"button\" class=\"delete btn-xs btn-danger\"><a href='removeCourse?courseId="+ list[i].courseId +"'>删除<a></button>\n" +
-                "    </td>\n" +
-                "</tr>"
-            $(table).append(str);
-        }
-    }
-
-
+    let list = <%=session.getAttribute(Constant.ATTR_STUDENT_COURSES)%>;
     // 展示所选课程
-    generate();
-
-
-
-
-
-
+    generate(list,table,"删除","danger");
 </script>
 </body>
 </html>

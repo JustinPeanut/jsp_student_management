@@ -1,5 +1,7 @@
 <%@ page import="com.peanut.bean.Student" %>
 <%@ page import="com.peanut.utils.constant.Constant" %>
+<%@ page import="com.peanut.bean.Course" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -8,6 +10,23 @@
     <base href="http://localhost:8080/JSP_Student_manage_war_exploded/">
     <link href="css/base.css" rel="stylesheet"/>
     <link href="css/home.css" rel="stylesheet"/>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .mt{
+            margin-top: 100px;
+        }
+        a{
+            color: #0f0f0f;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        a:active{
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,6 +38,17 @@
         <li>
             <span>525学生选课系统</span>
         </li>
+        <li>
+            <div class="btn-group ">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    点我 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">返回主页</a></li>
+                    <li><a href="#">查看我的选课</a></li>
+                </ul>
+            </div>
+        </li>
     </div>
     <div id="middleText">
 
@@ -29,6 +59,8 @@
             Student student = (Student) session.getAttribute(Constant.ATTR_STUDENT);
             if(student == null){
         %>
+
+
         <li>
             <span>登录</span>
         </li>
@@ -49,6 +81,42 @@
 
     <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/quit.js"></script>
+    <script type="text/javascript" src="js/courseGenerate.js"></script>
+</div>
+<div class="course-center">
+
+    <table class="table table-striped">
+        <thead>
+            <td>#</td>
+            <td>选课名称</td>
+            <td>教室名称</td>
+            <td>上课时间</td>
+            <td>操作</td>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        let list = <%=session.getAttribute(Constant.ATTR_ALL_COURSE)%>;
+        let table = $(".table");
+        generate(list,table,"选课","success");
+    </script>
+
 </div>
 </body>
 </html>

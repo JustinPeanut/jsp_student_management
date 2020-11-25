@@ -5,6 +5,7 @@ import com.peanut.bean.Student;
 import com.peanut.dao.CourseDaoImpl;
 import com.peanut.utils.connection.MyConnection;
 import com.peanut.utils.constant.Constant;
+import com.peanut.utils.util.ObjectToJson;
 import net.sf.json.JSONArray;
 
 import javax.servlet.ServletException;
@@ -39,14 +40,13 @@ public class RemoveCourse extends HttpServlet {
             // 如果删除成功，返回页面
 
             connection1 = MyConnection.getConnection();
+
             CourseDaoImpl courseDao = new CourseDaoImpl();
 
             List<Course> courses = courseDao.selectStudentSelect(connection1, student.getSno()+"");
 
             // 设置回session
-            JSONArray jsonArray = JSONArray.fromCollection(courses);
-
-            String courseJson = jsonArray.toString();
+            String courseJson = ObjectToJson.toJson(courses);
 
             session.setAttribute(Constant.ATTR_STUDENT_COURSES,courseJson);
 

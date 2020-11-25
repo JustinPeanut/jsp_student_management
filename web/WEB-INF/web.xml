@@ -34,12 +34,12 @@
         </servlet-mapping>
         
         <servlet>
-            <servlet-name>redirect</servlet-name>
-            <servlet-class>com.peanut.service.redirectController</servlet-class>
+            <servlet-name>courseCenter</servlet-name>
+            <servlet-class>com.peanut.service.ToCourseCenter</servlet-class>
         </servlet>
 
         <servlet-mapping>
-            <servlet-name>redirect</servlet-name>
+            <servlet-name>courseCenter</servlet-name>
             <url-pattern>/to/course/center</url-pattern>
         </servlet-mapping>
 </web-app>
