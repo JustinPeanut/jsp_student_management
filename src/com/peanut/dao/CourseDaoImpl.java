@@ -1,6 +1,7 @@
 package com.peanut.dao;
 
 import com.peanut.bean.Course;
+import com.peanut.utils.connection.MyConnection;
 
 import java.sql.Connection;
 import java.util.List;
@@ -23,6 +24,8 @@ public class CourseDaoImpl extends BaseDao<Course> implements CourseDao<Course> 
         String sql = "delete from sc where courseId = ? and Sno = ?";
         delete(sql,connection,args);
     }
+
+
 
 
 }

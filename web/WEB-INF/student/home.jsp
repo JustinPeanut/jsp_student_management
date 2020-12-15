@@ -31,7 +31,9 @@
         <li>
             <span><%=student.getSname()%></span>
         </li>
-        <li id="quit">
+        <li id="quit" onclick="(function quit() {
+           window.location.href = 'http://localhost:8080/JSP_Student_manage_war_exploded/login';
+        })()">
             <span>退出</span>
         </li>
     </div>
@@ -131,13 +133,12 @@
 </div>
 
 <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/quit.js"></script>
 <script type="text/javascript" src="js/courseGenerate.js"></script>
 <script type="text/javascript">
     let table = $(".table");
     let list = <%=session.getAttribute(Constant.ATTR_STUDENT_COURSES)%>;
     // 展示所选课程
-    generate(list,table,"删除","danger");
+    generate(list,table,"删除","danger","remove");
 </script>
 </body>
 </html>

@@ -15,5 +15,7 @@ public interface StudentDao<T> {
 
     T selectByUsername(Connection connection,String... args) throws Exception;
 
+    Boolean addCourseByStudent(Connection connection,String... args);
+
 
 }

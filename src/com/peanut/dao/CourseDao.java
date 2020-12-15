@@ -7,4 +7,5 @@ public interface CourseDao<T> {
     List<T> selectAll(Connection connection, String... args);
     List<T> selectStudentSelect(Connection connection,String... args);
     void deleteCourseByStudent(Connection connection,String... args);
+
 }

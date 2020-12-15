@@ -1,6 +1,8 @@
 package com.peanut.dao;
 
+import com.peanut.bean.Course;
 import com.peanut.bean.Student;
+import com.peanut.utils.connection.MyConnection;
 import com.peanut.utils.exception.NoSuchStudent;
 
 import java.sql.Connection;
@@ -45,5 +47,24 @@ public class StudentDaoImpl extends BaseDao<Student> implements StudentDao<Stude
             e.printStackTrace();
         }
         return student;
+    }
+
+    @Override
+    public Boolean addCourseByStudent(Connection connection, String... args) {
+        try{
+            String sql = "select student.Sno Sno from student,sc where student.Sno = sc.Sno and sc.Sno = ? and sc.courseId = ?;";
+            List<Student> list = select(sql, connection, args);
+            if(list == null || list.size() == 0 ){
+                Connection connection1 = MyConnection.getConnection();
+                String insert = "insert into sc(Sno,courseId) values(?,?)";
+                insert(insert,connection1,args);
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

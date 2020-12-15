@@ -1,7 +1,5 @@
 <%@ page import="com.peanut.bean.Student" %>
 <%@ page import="com.peanut.utils.constant.Constant" %>
-<%@ page import="com.peanut.bean.Course" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -13,6 +11,7 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/courseGenerate.js"></script>
     <style type="text/css">
         .mt{
             margin-top: 100px;
@@ -44,8 +43,8 @@
                     点我 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#">返回主页</a></li>
-                    <li><a href="#">查看我的选课</a></li>
+                    <li><a id="return-home" href="home">返回主页</a></li>
+                    <li><a href="ownCourse">查看我的选课</a></li>
                 </ul>
             </div>
         </li>
@@ -74,14 +73,12 @@
         <%
             }
         %>
-        <li id="quit">
+        <li id="quit" onclick="(function quit() {
+           window.location.href = 'http://localhost:8080/JSP_Student_manage_war_exploded/login';
+        })()">
             <span>退出</span>
         </li>
     </div>
-
-    <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/quit.js"></script>
-    <script type="text/javascript" src="js/courseGenerate.js"></script>
 </div>
 <div class="course-center">
 
@@ -113,8 +110,11 @@
 
     <script type="text/javascript">
         let list = <%=session.getAttribute(Constant.ATTR_ALL_COURSE)%>;
+
         let table = $(".table");
-        generate(list,table,"选课","success");
+
+        generate(list,table,"选课","success","add");
+
     </script>
 
 </div>

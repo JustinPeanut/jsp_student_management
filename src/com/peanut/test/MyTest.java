@@ -100,5 +100,12 @@ public class MyTest {
         System.out.println(s);
     }
 
+    @Test
+    public void testAdd() throws Exception {
+        StudentDaoImpl courseDao = new StudentDaoImpl();
+
+        Boolean aBoolean = courseDao.addCourseByStudent(MyConnection.getConnection(), "1", "5");
+        System.out.println(aBoolean);
+    }
 }
 
