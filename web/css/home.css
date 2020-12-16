@@ -87,18 +87,6 @@
 .right-info ul li {
     flex: 1;
 }
-a{
-    color: #0f0f0f;
-    text-decoration: none;
-    font-size: 10px;
-}
-a:hover{
-    color: red;
-    text-decoration: none;
-}
-a:active{
-    text-decoration: none;
-}
 .Mycontent{
     display: flex;
 }

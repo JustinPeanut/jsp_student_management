@@ -17,5 +17,6 @@ public interface StudentDao<T> {
 
     Boolean addCourseByStudent(Connection connection,String... args);
 
+    Long courseCount(Connection connection,String sql,String... args);
 
 }

@@ -26,6 +26,4 @@ public class CourseDaoImpl extends BaseDao<Course> implements CourseDao<Course> 
     }
 
 
-
-
 }

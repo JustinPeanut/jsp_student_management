@@ -25,6 +25,9 @@ public class LoginController extends HttpServlet {
         HttpSession session = null;
         // 获取数据库连接
         try {
+            session = req.getSession();
+
+
             req.setCharacterEncoding("UTF-8");
 
             String username = req.getParameter("username");
@@ -36,10 +39,10 @@ public class LoginController extends HttpServlet {
             StudentDaoImpl studentDao = new StudentDaoImpl();
 
             // 查询学生验证登录
-            Student student = studentDao.selectByUsername(connection,username);
+           Student student = studentDao.selectByUsername(connection,username);
 
 
-            session = req.getSession();
+
 
             if(student != null && password.equals(student.getSpassword())){
                 // 如果密码正确，就返回页面

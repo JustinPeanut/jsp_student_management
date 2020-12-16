@@ -44,26 +44,6 @@
         </servlet-mapping>
 
         <servlet>
-            <servlet-name>returnHome</servlet-name>
-            <servlet-class>com.peanut.service.ReturnHome</servlet-class>
-        </servlet>
-
-        <servlet-mapping>
-            <servlet-name>returnHome</servlet-name>
-            <url-pattern>/home</url-pattern>
-        </servlet-mapping>
-
-        <servlet>
-            <servlet-name>OwnCourse</servlet-name>
-            <servlet-class>com.peanut.service.ToOwnCourse</servlet-class>
-        </servlet>
-
-        <servlet-mapping>
-            <servlet-name>OwnCourse</servlet-name>
-            <url-pattern>/ownCourse</url-pattern>
-        </servlet-mapping>
-
-        <servlet>
             <servlet-name>addCourse</servlet-name>
             <servlet-class>com.peanut.service.AddCourse</servlet-class>
         </servlet>
@@ -71,5 +51,15 @@
         <servlet-mapping>
             <servlet-name>addCourse</servlet-name>
             <url-pattern>/addCourse</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>returnHome</servlet-name>
+            <servlet-class>com.peanut.service.ReturnHome</servlet-class>
+        </servlet>
+
+        <servlet-mapping>
+            <servlet-name>returnHome</servlet-name>
+            <url-pattern>/home</url-pattern>
         </servlet-mapping>
 </web-app>

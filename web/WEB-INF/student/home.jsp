@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <base href="http://localhost:8080/JSP_Student_manage_war_exploded/">
-<link href="css/base.css" rel="stylesheet"/>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
 <link href="css/home.css" rel="stylesheet"/>
 
 <body>

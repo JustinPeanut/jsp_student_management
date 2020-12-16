@@ -6,9 +6,9 @@
 <html lang="zh-CN">
 <head>
     <base href="http://localhost:8080/JSP_Student_manage_war_exploded/">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="css/base.css" rel="stylesheet"/>
     <link href="css/home.css" rel="stylesheet"/>
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/courseGenerate.js"></script>
@@ -16,15 +16,7 @@
         .mt{
             margin-top: 100px;
         }
-        a{
-            color: #0f0f0f;
-        }
-        a:hover{
-            text-decoration: none;
-        }
-        a:active{
-            text-decoration: none;
-        }
+
     </style>
 </head>
 
@@ -43,8 +35,8 @@
                     点我 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a id="return-home" href="home">返回主页</a></li>
-                    <li><a href="ownCourse">查看我的选课</a></li>
+                    <li><a id="returnHome" href="http://localhost:8080/JSP_Student_manage_war_exploded/home">返回主页</a></li>
+                    <li><a href="javascript:;">...</a></li>
                 </ul>
             </div>
         </li>

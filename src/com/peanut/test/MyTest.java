@@ -107,5 +107,13 @@ public class MyTest {
         Boolean aBoolean = courseDao.addCourseByStudent(MyConnection.getConnection(), "1", "5");
         System.out.println(aBoolean);
     }
+
+    @Test
+    public void testCount() throws Exception {
+        Connection connection = MyConnection.getConnection();
+        StudentDaoImpl studentDao = new StudentDaoImpl();
+        Boolean aBoolean = studentDao.addCourseByStudent(connection, "1", "6");
+        System.out.println(aBoolean);
+    }
 }
 

@@ -6,6 +6,9 @@ import com.peanut.utils.connection.MyConnection;
 import com.peanut.utils.exception.NoSuchStudent;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 public class StudentDaoImpl extends BaseDao<Student> implements StudentDao<Student> {
@@ -55,16 +58,45 @@ public class StudentDaoImpl extends BaseDao<Student> implements StudentDao<Stude
             String sql = "select student.Sno Sno from student,sc where student.Sno = sc.Sno and sc.Sno = ? and sc.courseId = ?;";
             List<Student> list = select(sql, connection, args);
             if(list == null || list.size() == 0 ){
+                Connection connection2 = MyConnection.getConnection();
+                String countSql = "select count(*) from sc where Sno = ?";
+                StudentDaoImpl dao = new StudentDaoImpl();
+                Long count = dao.courseCount(connection2, countSql,args[0]);
+                if(count >= 4){
+                    return false;
+                }
                 Connection connection1 = MyConnection.getConnection();
                 String insert = "insert into sc(Sno,courseId) values(?,?)";
                 insert(insert,connection1,args);
                 return true;
-            }else{
-                return false;
             }
+
         }catch (Exception e){
             e.printStackTrace();
         }
         return false;
     }
+
+    @Override
+    public Long courseCount(Connection connection, String sql,String... args) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try{
+            ps = connection.prepareStatement(sql);
+            for(int i = 0 ; i < args.length ; i++){
+                ps.setObject(i+1,args[i]);
+            }
+            rs = ps.executeQuery();
+            Long count = null;
+            if(rs.next()){
+                count  = (Long) rs.getObject(1);
+            }
+            return count;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

@@ -9,4 +9,6 @@ out
 gen
 test
 classes
-web/WEB-INF/css/
+web/WEB-INF/classes
+src/com/peanut/test
+
